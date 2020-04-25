@@ -16,7 +16,10 @@ class Background {
     height =  700;
     context.drawImage(this.backgroundImage, 0, this.y, width, height);
     context.drawImage(this.backgroundImage, 0, this.y - this.backgroundImage.height, width, height);
-    context.drawImage(this.backgroundImage, 0, this.y - this.backgroundImage.height * 2, width,height);
+    for (let i = 0; i < 300; i++) {
+      context.drawImage(this.backgroundImage, 0, this.y - this.backgroundImage.height * i, width,height);
+    }
+
     //window.addEventListener('load', (event) => {
       //context.drawImage(this.backgroundImage, 0, this.y, width, height);
     //});
@@ -24,7 +27,7 @@ class Background {
     //context.drawImage(backgroundImage, x + backgroundImage.width * 2, 0);
   } 
   
-  loop = () => {
+  /*loop = () => {
     let y = this.y++;
     const backgroundImage = this.backgroundImage.height;
     
@@ -36,6 +39,5 @@ class Background {
     this.game.clearCanvas();
     this.drawBackground();
     setTimeout(this.loop, 1000/ 240);
-  }  
-  
+  }  */ 
 }
