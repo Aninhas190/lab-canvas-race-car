@@ -1,20 +1,42 @@
 class Car {
   constructor(game) {
     this.game = game;
-
-    
+    this.y = 350;
+    this.x = 250;
+    this.carWidth = 50;
+    this.carHeight = 100;
+    //this.direction = 'left';
+    this.carIMG = '/images/car.png';
+    this.carImage = new Image();
+    this.carImage.src = this.carIMG;
   }
 
-  drawCar(x, y) {
-    const carIMG = '/images/car.png';
-    const carImage = new Image();
-    carImage.src = carIMG;
-    x = 50;
-    y = 100;
+
+  moveLeft() {
+    if (this.x >= 5) {
+      this.x -= 5;
+      this.game.drawGame();
+    }
+  }
+
+  moveRight() {
+    if(this.x < 450) {
+      this.x += 5;
+      this.game.drawGame();
+    }
+  }
+
+  runLogic() {
+    this.moveLeft();
+    this.moveRight();
+  }
+
+  drawCar() {
     const context = this.game.context;
-    context.drawImage(carImage, 230, 350, x, y);
+    context.drawImage(this.carImage, this.x, this.y, this.carWidth, this.carHeight);
     window.addEventListener('load', (event) => {
-      context.drawImage(carImage, 250, 350, x, y);
+      context.drawImage(this.carImage, this.x, this.y, this.carWidth, this.carHeight);
     });
+
   }
 }
