@@ -1,8 +1,8 @@
 class Car {
   constructor(game) {
     this.game = game;
-    this.y = 350;
-    this.x = 250;
+    this.y = 550;
+    this.x = 230;
     this.carWidth = 50;
     this.carHeight = 100;
     //this.direction = 'left';

@@ -32,23 +32,34 @@ class Game {
     this.car = new Car(this);
     this.drawGame();
     this.runLogic();
+    this.drawGame();
+    //this.road.loop();
   }
 
   drawGame() {
-    this.road.drawBackground(this.width, this.height);
+    this.road.drawBackground();
     this.car.drawCar();
+
   }
-  /*loop(){
-    this.runLogic();
-
-    setTimeout(() => {
-      this.loop();
-    }, 300);
-
+  /*
+  loop = () => {
+    let y = this.road.y++;
+    const backgroundImage = this.road.backgroundImage.height;
+    
+    if (backgroundImage) {
+      y = y % backgroundImage;
+    }
+    console.log(y);
+    //this.road.drawBackground();
+    this.clearCanvas();
+    this.drawGame();
+    setTimeout(this.loop, 1000 / 400);
   }*/
+  
 
   runLogic() {
     this.car.runLogic();
+    this.road.loop();
   }
 
 }

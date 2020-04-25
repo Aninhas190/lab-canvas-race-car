@@ -1,21 +1,41 @@
 class Background {
-  constructor (game) {
+  constructor(game) {
     this.game = game;
-  }
-  
-  drawBackground (x, y) {
-    const backgroundIMG = '/images/road.png';
-    const backgroundImage = new Image();
-    backgroundImage.src = backgroundIMG;
-    
-    const context = this.game.context;
+    this.y = 0;
+    this.height = this.game.height;
+    this.width = this.game.width;
 
-    context.drawImage(backgroundImage, 0, 0, x, y);
-    window.addEventListener('load', (event) => {
-      context.drawImage(backgroundImage, 0, 0, x, y);
-    });
+    this.backgroundIMG = '/images/road.png';
+    this.backgroundImage = new Image();
+    this.backgroundImage.src = this.backgroundIMG;;
+  }
+
+  drawBackground(width, height) {
+    const context = this.game.context;
+    width = 500;
+    height =  700;
+    context.drawImage(this.backgroundImage, 0, this.y, width, height);
+    context.drawImage(this.backgroundImage, 0, this.y - this.backgroundImage.height, width, height);
+    context.drawImage(this.backgroundImage, 0, this.y - this.backgroundImage.height * 2, width,height);
+    //window.addEventListener('load', (event) => {
+      //context.drawImage(this.backgroundImage, 0, this.y, width, height);
+    //});
     //context.drawImage(backgroundImage, x + backgroundImage.width, 0);
     //context.drawImage(backgroundImage, x + backgroundImage.width * 2, 0);
+  } 
+  
+  loop = () => {
+    let y = this.y++;
+    const backgroundImage = this.backgroundImage.height;
     
-  }
+    if (backgroundImage) {
+      y = y % backgroundImage;
+    }
+    console.log(y);
+    //this.road.drawBackground();
+    this.game.clearCanvas();
+    this.drawBackground();
+    setTimeout(this.loop, 1000/ 240);
+  }  
+  
 }
